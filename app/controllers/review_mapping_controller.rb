@@ -404,7 +404,12 @@ class ReviewMappingController < ApplicationController
     when "TeammateReviewResponseMap"
       # If review report for teammate is required call teammate_response_report method in teammate_review_response_map model
       @reviewers = TeammateReviewResponseMap.teammate_response_report(@id)
-    when "Calibration"
+
+      when "TeammateReviewsView"
+      @teams = @assignment.teams
+      #assignment_questionnaire = AssignmentQuestionnaire.where(assignment_id: params[:id], questionnaire_id: @review_questionnaire_ids).first
+      #@questions = @assignment_questionnaire.questionnaire.questions.select {|q| q.type == 'Criterion' or q.type == 'Scale'
+      when "Calibration"
       participant = AssignmentParticipant.where(parent_id: params[:id], user_id: session[:user].id).first rescue nil
       if participant.nil?
         participant = AssignmentParticipant.create(parent_id: params[:id], user_id: session[:user].id, can_submit: 1, can_review: 1, can_take_quiz: 1, handle: 'handle')

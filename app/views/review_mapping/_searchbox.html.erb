@@ -25,6 +25,10 @@
     <option value='Collusion' >
       Potential collusion report
     </option>
+    <option value='TeammateReviewsView' >
+      Teammate Reviews View
+    </option>
+
     <% if @assignment.simicheck > -1 %>
         <option value='PlagiarismCheckerReport' >
           Plagiarism Checker Report
@@ -71,7 +75,9 @@
     <h1> Review summary report for <%= @assignment.name%> </h1>
 <% elsif @type == "SummaryByRevieweeAndCriteria" %>
     <h1> Reviewees summary report for <%= @assignment.name%> </h1>
-<!--End show summary reports-->
+<% elsif @type == "TeammateReviewsView" %>
+    <h1> Teammate Review View <%= @assignment.name%> </h1>
+    <!--End show summary reports-->
 <% elsif @type == "Collusion" %>
     <h1> Potential collusion report for <%= @assignment.name%> </h1>
 <% elsif @type == "PlagiarismCheckerReport" %>

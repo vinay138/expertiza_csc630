@@ -206,4 +206,5 @@ module ReviewMappingHelper
                 end
     css_class
   end
-end
+
+  end

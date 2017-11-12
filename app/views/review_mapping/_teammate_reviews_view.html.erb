@@ -1,0 +1,59 @@
+<table border = "1">
+  <tr>
+    <th>Team Name</th>
+    <th>Team Members</th>
+    <th>Question 1</th>
+    <th>Question 2</th>
+    <th>Question 3</th>
+    <th>Question 4</th>
+    <th>Question 5</th>
+  </tr>
+  <%@teams.each do |team| %>
+      <tr>
+        <td><%= team.name %></td>
+        <td>
+          <table border = "1">
+          <%
+             team.participants.each do |participant|
+               count = a = b = c = d = e = 0%>
+              <td><%= participant.name %></td>
+              a
+              <%
+                 TeammateReviewResponseMap.where(reviewee_id: participant.id).each do |map| %>
+                <%if(Response.where(map_id: map.id).count!=0) %>
+                     <% Answer.where(response_id: Response.where(map_id: map.id).last.id).each do |answer|%>
+                       <%count = count + 1
+                          if(count%5==1)
+                            a = a + answer.answer
+                          end
+                          if(count%5==2)
+                            b = b + answer.answer
+                          end
+                          if(count%5==3)
+                            c = c + answer.answer
+                          end
+                          if(count%5==4)
+                            d = d + answer.answer
+                          end
+                          if(count%5==0)
+                            e = e + answer.answer
+                          end
+                       %>
+                     <%end%>
+                   <% end %>
+              <%end%>
+              a
+              <br>
+                <td><%=a/3%></td>
+                <td><%=b/3%></td>
+                <td><%=c/3%></td>
+                <td><%=d/3%></td>
+                <td><%=e/3%></td>
+          <%end %>
+          </table>
+        </td>
+      </tr>
+  <%end%>
+</table>
+
+
